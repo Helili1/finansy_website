@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142 67% 23%;
+    --primary-foreground: 210 40% 98%;
+    --primary-light: 140 61% 14%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 67% 23%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 140 61% 14%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Фон заголовка с градиентом */
+.header-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(18, 99, 27, 0.2) 0%,
+    rgba(7, 70, 17, 0.1) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+/* Анимация появления */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.slide-in-right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.slide-in-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.scale-in.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Стаггерованная анимация для книг */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-animation > * {
+  opacity: 0;
+}
+
+.stagger-animation.show > *:nth-child(1) {
+  animation: fadeInUp 0.6s 0.1s forwards;
+}
+
+.stagger-animation.show > *:nth-child(2) {
+  animation: fadeInUp 0.6s 0.2s forwards;
+}
+
+.stagger-animation.show > *:nth-child(3) {
+  animation: fadeInUp 0.6s 0.3s forwards;
+}
+
+.stagger-animation.show > *:nth-child(4) {
+  animation: fadeInUp 0.6s 0.4s forwards;
+}
+
+.stagger-animation.show > *:nth-child(5) {
+  animation: fadeInUp 0.6s 0.5s forwards;
+}
+
+.stagger-animation.show > *:nth-child(6) {
+  animation: fadeInUp 0.6s 0.6s forwards;
+}
+
+.stagger-animation.show > *:nth-child(7) {
+  animation: fadeInUp 0.6s 0.7s forwards;
+}
+
+.stagger-animation.show > *:nth-child(8) {
+  animation: fadeInUp 0.6s 0.8s forwards;
+}
+
+/* Book card styling */
+.book-card img {
+  @apply w-full h-auto max-h-[300px] object-contain;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  .book-card img {
+    @apply max-h-[200px];
+  }
+}
+
+/* Анимация заголовка */
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--destructive)) 0%,
+    hsl(var(--primary)) 50%,
+    hsl(var(--destructive)) 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientText 8s linear infinite;
+  display: inline-block;
+}
+
+/* Декоративные элементы */
+.decorative-line {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary)),
+    transparent
+  );
+}
+
+.glassy-card {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Эффект блеска для кнопок */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
